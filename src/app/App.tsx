@@ -1,9 +1,4 @@
-import "../css/app.css";
-
-import { Container, Stack, Box, Typography, Button } from "@mui/material";
-import { RippleBadge } from "./material/MaterialTheme/styled";
-import { Link, Route, Switch, useLocation } from "react-router-dom";
-import { AboutPage } from "./screens/aboutPage";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { UserPage } from "./screens/usersPage";
 import { HomePage } from "./screens/homePage";
 import { ProductPage } from "./screens/productsPage";
@@ -11,6 +6,8 @@ import { OrderPage } from "./screens/orderPage";
 import { HomeNavbar } from "./components/headers/HomeNavber";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { Footer } from "./components/footer";
+import "../css/navbar.css";
+import "../css/app.css";
 
 function App() {
   const location = useLocation();
