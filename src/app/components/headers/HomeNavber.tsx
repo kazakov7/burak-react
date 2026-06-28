@@ -64,7 +64,7 @@ export function HomeNavbar() {
               <Box>
                 <Button
                   variant="contained"
-                  style={{ background: "#3776CC", color: "f8f8ff" }}
+                  style={{ background: "#3776CC", color: "fff" }}
                 >
                   Login
                 </Button>
