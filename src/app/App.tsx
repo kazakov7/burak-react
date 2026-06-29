@@ -1,12 +1,13 @@
 import { Route, Switch, useLocation } from "react-router-dom";
-import { UserPage } from "./screens/usersPage";
-import { HomePage } from "./screens/homePage";
-import { ProductPage } from "./screens/productsPage";
-import { OrderPage } from "./screens/orderPage";
-import { HomeNavbar } from "./components/headers/HomeNavber";
-import { OtherNavbar } from "./components/headers/OtherNavbar";
-import { Footer } from "./components/footer";
+import UserPage from "./screens/usersPage";
+import HomePage from "./screens/homePage";
+import ProductPage from "./screens/productsPage";
+import OrderPage from "./screens/orderPage";
+import HomeNavbar from "./components/headers/HomeNavber";
+import OtherNavbar from "./components/headers/OtherNavbar";
+import Footer from "./components/footer";
 import "../css/navbar.css";
+import "../css/footer.css";
 import "../css/app.css";
 
 function App() {
