@@ -1,14 +1,15 @@
+import React from "react";
+import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";
 import NewDishes from "./NewDishes";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
-import Statistics from "./Statisticss";
 import "../../../css/home.css";
 
 export default function HomePage() {
   return (
-    <div className="home-page">
+    <div className={"homepage"}>
       <Statistics />
       <PopularDishes />
       <NewDishes />
