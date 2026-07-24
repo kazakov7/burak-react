@@ -1,3 +1,4 @@
+import { withEmotionCache } from "@emotion/react";
 import { serverApi } from "../../lib/config";
 import { Product, ProductInquery } from "../../lib/types/product";
 import axios from "axios";
@@ -18,6 +19,16 @@ class ProductService {
         url += `&search=${input.search}`;
       }
       const result = await axios.get(url);
+      return result.data;
+    } catch (err) {
+      console.log("Error", err);
+      throw err;
+    }
+  }
+  public async getProduct(productId: string): Promise<Product> {
+    try {
+      const url = `${this.path}/product/${productId}`;
+      const result = await axios.get(url, { withCredentials: true });
       return result.data;
     } catch (err) {
       console.log("Error", err);
