@@ -5,7 +5,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
-import { useParams } from "react-router-dom"; // @ts-ignore
+// @ts-ignore
 import { FreeMode, Navigation, Thumbs } from "swiper";
 import "swiper/css";
 import "swiper/css/free-mode";
