@@ -20,6 +20,7 @@ import { AppRootState } from "../../../lib/types/screen";
 import { serverApi } from "../../../lib/config";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setProducts: (data: Product[]) => dispatch(setProducts(data)),
@@ -28,7 +29,12 @@ const productsRetriewer = createSelector(retrieveProducts, (products) => ({
   products,
 }));
 
-export default function Products() {
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
+
+export default function Products(props: ProductsProps) {
+  const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriewer);
   const [productSearch, setProductSearch] = useState<ProductInquery>({
@@ -250,6 +256,17 @@ export default function Products() {
                           <img
                             src={"/icons/shopping-cart.svg"}
                             style={{ display: "flex" }}
+                            onClick={(e) => {
+                              console.log("BUTTON PRESSED!");
+                              onAdd({
+                                _id: product._id,
+                                name: product.productName,
+                                price: product.productPrice,
+                                quantity: 1,
+                                image: product.productImages[0],
+                              });
+                              e.stopPropagation();
+                            }}
                           />
                         </Button>
                         <Button className={"view-btn"} sx={{ right: "36px" }}>
