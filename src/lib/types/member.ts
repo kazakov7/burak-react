@@ -6,7 +6,7 @@ export interface Member {
   memberStatus: MemberStatus;
   memberNick: string;
   memberPhone: string;
-  memberPassword?: string;
+  memberPassword: string;
   memberAddres?: string;
   memberDesc?: string;
   memberImage: string;
@@ -16,7 +16,7 @@ export interface Member {
 }
 
 export interface MemberInput {
-  memberImage: string;
+  memberImage?: string;
   memberType?: MemberType;
   memberStatus?: MemberStatus;
   memberNick: string;
