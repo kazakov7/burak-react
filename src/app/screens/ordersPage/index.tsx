@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -12,6 +12,9 @@ import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Order } from "../../../lib/types/order";
 import { useDispatch } from "react-redux";
+import { OrderStatus } from "../../../lib/enums/orde.enum";
+import OrderService from "../../services/Order.service";
+import { useGlobals } from "../../hooks/useGlobal";
 
 //redux slice & selektor
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -23,11 +26,40 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
+  const { orderBuilder } = useGlobals();
   const [value, setValue] = useState("1");
+  const [orderInquery, setOrderInquery] = useState({
+    page: 1,
+    limit: 5,
+    oderStatus: OrderStatus.PAUSE,
+  });
 
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const order = new OrderService();
+
+    order
+      .getMyOrders({ ...orderInquery, orderStatus: OrderStatus.PAUSE })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => {
+        console.log(err);
+      });
+    order
+      .getMyOrders({ ...orderInquery, orderStatus: OrderStatus.PROCESS })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => {
+        console.log(err);
+      });
+    order
+      .getMyOrders({ ...orderInquery, orderStatus: OrderStatus.FINISH })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [orderInquery, orderBuilder]);
 
   return (
     <div className={"order-page"}>
@@ -49,8 +81,8 @@ export default function OrdersPage() {
               </Box>
             </Box>
             <Stack className={"order-main-content"}>
-              <PausedOrders />
-              <ProcessOrders />
+              <PausedOrders setValue={setValue} />
+              <ProcessOrders setValue={setValue} />
               <FinishedOrders />
             </Stack>
           </TabContext>
