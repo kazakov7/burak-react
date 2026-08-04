@@ -157,7 +157,7 @@ export function Settings() {
               authMember?.memberAddres ? authMember.memberAddres : "no address"
             }
             value={memberUpdateInput.memberAddres}
-            name="memberAddress"
+            name="memberAddres"
             onChange={memberAdressHandler}
           />
         </div>

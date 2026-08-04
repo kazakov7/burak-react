@@ -86,7 +86,7 @@ class MemberService {
 
       formData.append("memberNick", input.memberNick || "");
       formData.append("memberPhone", input.memberPhone || "");
-      formData.append("memberAdress", input.memberAddres || "");
+      formData.append("memberAddres", input.memberAddres || "");
       formData.append("memberDesc", input.memberDesc || "");
 
       if (input.memberImage) {
